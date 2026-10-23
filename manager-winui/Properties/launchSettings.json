@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "DiscordReactionManager.WinUI (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "DiscordReactionManager.WinUI (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

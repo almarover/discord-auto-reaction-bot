@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Application
+    x:Class="DiscordReactionManager_WinUI.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DiscordReactionManager_WinUI"
+    RequestedTheme="Dark">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
+                <!-- Other merged dictionaries here -->
+            </ResourceDictionary.MergedDictionaries>
+            <SolidColorBrush x:Key="AppBackgroundBrush" Color="#1F1E1B" />
+            <SolidColorBrush x:Key="SidebarBrush" Color="#242320" />
+            <SolidColorBrush x:Key="CardBrush" Color="#2D2C29" />
+            <SolidColorBrush x:Key="CardHoverBrush" Color="#353431" />
+            <SolidColorBrush x:Key="PanelBrush" Color="#373633" />
+            <SolidColorBrush x:Key="BorderBrush" Color="#454440" />
+            <SolidColorBrush x:Key="PrimaryTextBrush" Color="#F4F3F1" />
+            <SolidColorBrush x:Key="SecondaryTextBrush" Color="#A8A6A0" />
+            <SolidColorBrush x:Key="AccentGreenBrush" Color="#36E68A" />
+            <SolidColorBrush x:Key="DangerBrush" Color="#FF6B6B" />
+
+            <Style TargetType="Button">
+                <Setter Property="CornerRadius" Value="5" />
+                <Setter Property="Padding" Value="14,8" />
+                <Setter Property="MinHeight" Value="36" />
+                <Setter Property="FontWeight" Value="SemiBold" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="BorderBrush" Value="Transparent" />
+            </Style>
+            <Style TargetType="TextBox">
+                <Setter Property="CornerRadius" Value="5" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="BorderBrush" Value="Transparent" />
+            </Style>
+            <Style TargetType="PasswordBox">
+                <Setter Property="CornerRadius" Value="5" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="BorderBrush" Value="Transparent" />
+            </Style>
+            <Style TargetType="ComboBox">
+                <Setter Property="CornerRadius" Value="5" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="BorderBrush" Value="Transparent" />
+            </Style>
+            <Style TargetType="NumberBox">
+                <Setter Property="CornerRadius" Value="5" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="BorderBrush" Value="Transparent" />
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

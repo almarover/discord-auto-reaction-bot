@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page
+    x:Class="DiscordReactionManager_WinUI.Pages.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Loaded="Page_Loaded">
+
+    <ScrollViewer>
+        <StackPanel Padding="26,20,26,28" Spacing="16">
+            <StackPanel>
+                <TextBlock FontSize="28" FontWeight="SemiBold" Text="设置" />
+                <TextBlock Margin="0,5,0,0" Foreground="{StaticResource SecondaryTextBrush}" Text="管理启动行为、托盘和程序路径" />
+            </StackPanel>
+
+            <Border Padding="20" Background="{StaticResource CardBrush}" CornerRadius="6">
+                <StackPanel Spacing="8">
+                    <TextBlock FontSize="18" FontWeight="SemiBold" Text="启动与后台" />
+                    <Grid Height="66"><TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Left" Text="Windows 登录后自动启动管理器" /><ToggleSwitch x:Name="AutoManagerSwitch" HorizontalAlignment="Right" VerticalAlignment="Center" /></Grid>
+                    <Rectangle Height="1" Fill="{StaticResource BorderBrush}" />
+                    <Grid Height="66"><TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Left" Text="管理器启动后自动启动 Bot" /><ToggleSwitch x:Name="AutoBotSwitch" HorizontalAlignment="Right" VerticalAlignment="Center" /></Grid>
+                    <Rectangle Height="1" Fill="{StaticResource BorderBrush}" />
+                    <Grid Height="66"><TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Left" Text="开机启动时隐藏到系统托盘" /><ToggleSwitch x:Name="LaunchHiddenSwitch" HorizontalAlignment="Right" VerticalAlignment="Center" /></Grid>
+                    <Rectangle Height="1" Fill="{StaticResource BorderBrush}" />
+                    <Grid Height="66"><TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Left" Text="点击关闭按钮时最小化到托盘" /><ToggleSwitch x:Name="CloseToTraySwitch" HorizontalAlignment="Right" VerticalAlignment="Center" /></Grid>
+                </StackPanel>
+            </Border>
+
+            <Border Padding="20" Background="{StaticResource CardBrush}" CornerRadius="6">
+                <StackPanel Spacing="10">
+                    <TextBlock FontSize="18" FontWeight="SemiBold" Text="程序文件" />
+                    <TextBlock Foreground="{StaticResource SecondaryTextBrush}" Text="配置、Token 与 Bot 文件仍保存在原项目目录。" />
+                    <TextBox x:Name="ProjectPathText" IsReadOnly="True" />
+                    <Button HorizontalAlignment="Left" Click="OpenProject_Click" Content="打开项目文件夹" />
+                </StackPanel>
+            </Border>
+
+            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Spacing="10">
+                <Button Click="Save_Click" Content="保存设置" Background="#236B45" />
+            </StackPanel>
+            <InfoBar x:Name="MessageBar" IsOpen="False" IsClosable="True" />
+        </StackPanel>
+    </ScrollViewer>
+</Page>

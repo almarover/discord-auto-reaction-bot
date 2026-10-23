@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page
+    x:Class="DiscordReactionManager_WinUI.Pages.PublicPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Loaded="Page_Loaded">
+
+    <Grid Padding="26,20,26,26" RowSpacing="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel>
+            <TextBlock FontSize="28" FontWeight="SemiBold" Text="公共" />
+            <TextBlock Margin="0,5,0,0" Foreground="{StaticResource SecondaryTextBrush}" Text="为每个服务器配置所有目标用户共用的 Reaction" />
+        </StackPanel>
+
+        <Border Grid.Row="1" Padding="18" Background="{StaticResource CardBrush}" CornerRadius="6">
+            <Grid ColumnSpacing="14" RowSpacing="12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <StackPanel Spacing="7">
+                    <TextBlock FontWeight="SemiBold" Text="Discord 服务器" />
+                    <ComboBox x:Name="ServerCombo" MinWidth="380" SelectionChanged="ServerCombo_SelectionChanged" />
+                </StackPanel>
+                <StackPanel Grid.Column="1" VerticalAlignment="Center" Orientation="Horizontal" Spacing="12">
+                    <TextBlock VerticalAlignment="Center" Text="在此服务器启用自动 Reaction" />
+                    <ToggleSwitch x:Name="ServerEnabledSwitch" OnContent="开" OffContent="关" />
+                </StackPanel>
+                <Grid Grid.Row="1" Grid.ColumnSpan="2" ColumnSpacing="12">
+                    <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                    <TextBlock VerticalAlignment="Center" FontWeight="SemiBold" Text="公共 Reaction 生效频道" />
+                    <TextBlock x:Name="ChannelSummaryText" Grid.Column="1" VerticalAlignment="Center" Foreground="{StaticResource SecondaryTextBrush}" Text="全部可访问文字频道" TextTrimming="CharacterEllipsis" />
+                    <Button Grid.Column="2" Click="ChooseChannels_Click" Content="选择频道" />
+                </Grid>
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="2" Padding="20" Background="{StaticResource CardBrush}" CornerRadius="6">
+            <Grid RowSpacing="12">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <StackPanel>
+                    <TextBlock FontSize="18" FontWeight="SemiBold" Text="公共 Reaction" />
+                    <TextBlock Margin="0,5,0,0" Foreground="{StaticResource SecondaryTextBrush}" Text="每行一个；支持 Custom Emoji 数字 ID、普通 Emoji 或 :emoji_name:。" />
+                </StackPanel>
+                <TabView Grid.Row="1" IsAddTabButtonVisible="False">
+                    <TabViewItem Header="Reaction 列表" IsClosable="False">
+                        <Grid Padding="0,12,0,0" ColumnSpacing="14">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1.35*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBox x:Name="ReactionText" AcceptsReturn="True" TextWrapping="Wrap" VerticalContentAlignment="Top" TextChanged="ReactionText_TextChanged" PlaceholderText="例如：&#x0a;1543554210203967510&#x0a;❤️&#x0a;:thumbs_up:" />
+                            <Border Grid.Column="1" Padding="12" Background="{StaticResource CardHoverBrush}" CornerRadius="5">
+                                <Grid RowSpacing="10">
+                                    <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="*" /></Grid.RowDefinitions>
+                                    <TextBlock FontWeight="SemiBold" Text="表情预览（与左侧逐项对应）" />
+                                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                                        <StackPanel x:Name="PublicPreviewRows" Spacing="7" />
+                                    </ScrollViewer>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </TabViewItem>
+                    <TabViewItem Header="随机与概率" IsClosable="False">
+                        <Grid Padding="0,12,0,0" RowSpacing="10">
+                            <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /><RowDefinition Height="*" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
+                            <Grid ColumnSpacing="14">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /><ColumnDefinition Width="96" /></Grid.ColumnDefinitions>
+                                <ToggleSwitch x:Name="PublicNoReactionSwitch" Header="启用不进行Reaction" Toggled="PublicNoReactionSwitch_Toggled" />
+                                <TextBlock Grid.Column="1" VerticalAlignment="Center" Text="不进行概率" />
+                                <NumberBox x:Name="PublicNoReactionProbabilityBox" Grid.Column="2" Width="88" Height="36" HorizontalAlignment="Right" VerticalAlignment="Center" HorizontalContentAlignment="Center" Minimum="0" Maximum="100" SmallChange="1" SpinButtonPlacementMode="Compact" Value="0" />
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <ToggleSwitch x:Name="PublicRandomSwitch" Header="触发 Reaction 时，从公共列表随机抽取 1 个" Toggled="PublicRandomSwitch_Toggled" />
+                                <Button HorizontalAlignment="Right" Click="PublicEqualWeights_Click" Content="一键均分" />
+                            </Grid>
+                            <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+                                <StackPanel x:Name="PublicProbabilityRows" Spacing="7" />
+                            </ScrollViewer>
+                            <Grid Grid.Row="3">
+                                <TextBlock Foreground="{StaticResource SecondaryTextBrush}" Text="两个开关都关闭时，默认添加全部公共 Reaction；只开启“不进行 Reaction”时，未跳过则添加全部；两个同时开启时，未跳过再按概率随机抽取 1 个。以上设置不影响专属 Reaction。" TextWrapping="Wrap" />
+                                <TextBlock x:Name="PublicProbabilityTotalText" HorizontalAlignment="Right" FontSize="18" FontWeight="SemiBold" Text="总计 0%" />
+                            </Grid>
+                        </Grid>
+                    </TabViewItem>
+                </TabView>
+            </Grid>
+        </Border>
+
+        <StackPanel Grid.Row="3" HorizontalAlignment="Right" Orientation="Horizontal" Spacing="10">
+            <Button Click="Reload_Click" Content="重新载入" />
+            <Button Click="Save_Click" Content="保存公共配置" Background="#236B45" />
+        </StackPanel>
+        <InfoBar x:Name="MessageBar" Grid.Row="3" HorizontalAlignment="Left" IsOpen="False" IsClosable="True" />
+    </Grid>
+</Page>
