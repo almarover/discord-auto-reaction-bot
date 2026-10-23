@@ -1,7 +1,5 @@
 # Discord Auto Reaction Bot
 
-> 管理器现已使用 WinUI 3 原生版本；旧版统一归档在同级 `old` 文件夹，不会参与日常启动。
-
 这是一个适合初学者的 Python Discord Bot。它只监听服务器里的**新消息**，支持多个 Discord 服务器和多个目标用户，也支持混合使用当前服务器 Custom Emoji、Bot 所在其他服务器的 Custom Emoji 与普通 Unicode Emoji。公共与专属 Reaction 都可以独立限定生效频道、选择全部添加或按精确概率随机抽取一个，并可设置一定概率不添加任何 Reaction。
 
 它不会扫描历史消息，不使用数据库或 Web Dashboard，也不会读取、记录或分析消息正文。代码只使用非特权的 `Guilds` 和 `Guild Messages` Gateway Intents，**不需要开启 Message Content Intent**。
